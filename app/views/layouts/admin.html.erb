@@ -1,0 +1,35 @@
+<% # app/views/layouts/admin.html.erb %>
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Admin Interface</title>
+    <%= csrf_meta_tags %>
+
+    <% # Optionally use admin-specific assets here instead of the normal application assets %>
+    <%= stylesheet_link_tag    'admin', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'admin', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+   <p class="notice"><%= notice %></p>
+   <p class="alert"><%= alert %></p>
+
+  <% if user_signed_in? %>
+    Logged in as <strong><%= current_user.email %></strong>.
+    <%= link_to 'Edit profile', edit_user_registration_path %> |
+    <%= link_to "Logout", destroy_user_session_path, method: :delete %>
+  <% else %>
+    <%= link_to "Sign up", new_user_registration_path %> |
+    <%= link_to "Login", new_user_session_path %>
+  <% end %>
+       
+
+
+  <header>
+    <h1>Welcome Admin User</h1>
+  </header>
+
+  <body>
+    <%= yield %>
+  </body>
+</html>
